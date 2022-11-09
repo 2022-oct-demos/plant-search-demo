@@ -1,6 +1,6 @@
 /* Imports */
 
-import { getAllPlants, getTypes } from './fetch-utils.js';
+import { getAllPlants, getPlantsByType, getTypes } from './fetch-utils.js';
 import { renderPlant, renderType } from './render-utils.js';
 
 /* Get DOM Elements */
@@ -24,6 +24,19 @@ window.addEventListener('load', async () => {
     displayTypes();
 });
 
+searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(searchForm);
+    // find function that takes in the user data
+    findPlants(formData.get('type'));
+});
+
+async function findPlants(type) {
+    const response = await getPlantsByType(type);
+    plants = response.data;
+    displayPlants();
+}
+
 /* Display Functions */
 function displayPlants() {
     plantList.innerHTML = '';
@@ -35,8 +48,8 @@ function displayPlants() {
 
 function displayTypes() {
     for (let sillyType of types) {
-        const option = renderType(sillyType);
-        typeSelect.append(option);
+        const optionEl = renderType(sillyType);
+        typeSelect.append(optionEl);
     }
 }
 

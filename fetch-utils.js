@@ -11,6 +11,11 @@ export async function getAllPlants() {
 
 export async function getTypes() {
     const response = await client.from('plant_types').select('*');
+    return response;
+}
+
+export async function getPlantsByType(plantType) {
+    const response = await client.from('plants').select('*').eq('Plant_Type', plantType);
     console.log(response);
     return response;
 }
