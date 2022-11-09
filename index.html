@@ -11,7 +11,10 @@
         <link rel="icon" type="image/x-icon" href="assets/alchemy-favicon.png" />
 
         <!-- js -->
-
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.35.7/dist/umd/supabase.min.js"
+        ></script>
         <script type="module" src="app.js"></script>
 
         <!-- fonts -->
@@ -32,13 +35,13 @@
         <main>
             <section class="search">
                 <h2>Search Plants by Type</h2>
-                <!-- <form id="search-form">
+                <form id="search-form">
                     <label for="type-select">Select a Plant Type: </label>
                     <select id="type-select" name="type">
                         <option value="">All Types</option>
                     </select>
                     <button type="submit" aria-label="submit-search">🔍</button>
-                </form> -->
+                </form>
             </section>
 
             <ul class="list" id="plant-list"></ul>
