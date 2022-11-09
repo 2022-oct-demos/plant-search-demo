@@ -13,3 +13,10 @@ export function renderPlant(booger) {
 
     return li;
 }
+
+export function renderType(plantType) {
+    const option = document.createElement('option');
+    option.value = plantType.name;
+    option.textContent = plantType.name;
+    return option;
+}
