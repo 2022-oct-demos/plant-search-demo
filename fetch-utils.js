@@ -4,8 +4,15 @@ const SUPABASE_KEY =
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-export async function getAllPlants() {
-    const response = await client.from('plants').select('*').order('Common_Name').limit(100);
+export async function getPlants(plantType) {
+    let query = client.from('plants').select('*').order('Common_Name').limit(100);
+
+    // if there is a plant type given to the function, filter the response by type
+    if (plantType) {
+        query = query.eq('Plant_Type', plantType);
+    }
+    const response = await query;
+
     return response;
 }
 
@@ -14,8 +21,8 @@ export async function getTypes() {
     return response;
 }
 
-export async function getPlantsByType(plantType) {
-    const response = await client.from('plants').select('*').eq('Plant_Type', plantType);
-    console.log(response);
-    return response;
-}
+// export async function getPlantsByType(plantType) {
+//     const response = await client.from('plants').select('*').eq('Plant_Type', plantType);
+//     console.log(response);
+//     return response;
+// }
