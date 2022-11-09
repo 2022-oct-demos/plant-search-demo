@@ -1,6 +1,6 @@
 /* Imports */
 
-import { getAllPlants } from './fetch-utils.js';
+import { getAllPlants, getTypes } from './fetch-utils.js';
 import { renderPlant } from './render-utils.js';
 
 /* Get DOM Elements */
@@ -17,6 +17,7 @@ window.addEventListener('load', async () => {
     const response = await getAllPlants();
     plants = response.data;
     displayPlants();
+    await getTypes();
 });
 
 /* Display Functions */
